@@ -1,0 +1,16 @@
+use companyData
+
+  db.companies.insertOne({name: "Fresh Apples Inc", isStartup: true, emplyees: 33, funding : 12345652343232,
+  details : {ceo: "Mark Super", tags :["super", "perfect"], foundingDate : new Date(), inserted : new Timestamp() }
+  })
+
+  db.companies.find().pretty()
+
+  typeof db.companies.findOne().name
+  typeof db.companies.findOne().isStartup
+
+
+  # You can find all limits (in great detail) here: https://docs.mongodb.com/manual/reference/limits/
+
+  # For the data types, MongoDB supports, you find a detailed overview
+  # on this page: https://docs.mongodb.com/manual/reference/bson-types/
