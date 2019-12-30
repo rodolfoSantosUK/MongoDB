@@ -1,0 +1,40 @@
+# InsertMany
+  use flight
+  db.dropDatabase()
+  db.flight.drop()
+
+  db.flight.insertMany ([
+   { "departureAirport" : "MUC",
+     "arrivalAirport" : "SFO",
+     "aircraft" : "Airbus 380",
+     "distance" : 12000,
+     "intercontinental" : true
+     },
+   {
+     "departureAirport" : "LHR",
+     "arrivalAirport" : "TXL",
+     "aircraft" : "Airbus 320",
+     "distance" : 950 ,
+       "intercontinental" :  false
+    } ] )
+
+# Usando find:
+
+  db.flight.find().pretty()
+  db.flight.find({distance: {$gt: 900} })
+
+# Atualizando
+
+  db.flight.updateOne({_id: ObjectId("5e08dfa1556534fccda7b487")},
+                      {$set: {delayed: true}})
+  db.flightData.find({ _id: ObjectId("5e0882f4fdde2f1a03c6bfa2") }).pretty()
+
+  db.flight.updateMany({_id: ObjectId("5e08dfa1556534fccda7b487")},
+                       {$set: {delayed: true}})
+
+  db.flight.find({ _id: ObjectId("5e08dfa1556534fccda7b487")}).pretty()
+
+  db.flight.replaceOne({_id: ObjectId("5e08ecd6556534fccda7b48a")},
+                       { aircraft: "Boeing 320"})
+
+  db.flight.find({ _id: ObjectId("5e08dfa1556534fccda7b487") }).pretty()
