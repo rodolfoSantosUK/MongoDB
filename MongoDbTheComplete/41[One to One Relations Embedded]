@@ -1,0 +1,15 @@
+use hospital
+
+    db.patients.insertOne({name: "Max", age: 29, diseaseSummary : "summary-max-1"})
+    db.patients.find().pretty()
+
+    db.diseaseSummaries.insertOne({ _id : "summary-max-1", disease: ["cold","broken leg"]})
+    db.diseaseSummaries.find().pretty()
+
+    db.patients.findOne().pretty()
+    db.patients.findOne().diseaseSummary
+
+    var dsid = db.patients.findOne().diseaseSummary
+    db.diseaseSummaries.findOne({_id : dsid})
+
+
