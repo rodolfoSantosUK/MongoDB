@@ -1,0 +1,23 @@
+
+  use patient
+    db.dropDatabase()
+    db.patient.drop()
+
+use patient
+    db.patient.insertMany ([
+    {firstName : "Max", lastName : "Schwarzmueller", age : 29, history : [{disease :"cold", treatment:  " treatment 1"}]},
+    {firstName : "Joe", lastName : "Schwarzmueller", age : 30, history : [{disease :"nose", treatment:  " treatment 2"}]},
+    {firstName : "Joe", lastName : "Schwarzmueller", age : 30, history : [{disease :"mouth", treatment: " treatment 2"}]}
+                          ])
+    db.patient.find().pretty()
+
+    #Atualizando dados de um paciente com nova age, name e history
+    db.patient.updateOne({},{$set : {age : 33, firstName : "Rod", history : [{disease :"nothing", treatment:  " nothing"}]}})
+    db.patient.find().pretty()
+
+    # Buscando com idade acima de 30 anos
+    db.patient.find({ age : {$gt : 30}}).pretty()
+
+    # Deletando
+    db.patientData.deleteOne({History: "cold"})
+
