@@ -1,0 +1,21 @@
+use shop
+db.products.drop()
+db.customers.drop()
+db.orders.drop()
+
+db.products.insertOne({title: "A book", price: 12.99})
+
+db.customers.insertOne({name : "Max", age : 29})
+
+db.orders.insertOne({ productId : ObjectId("5e0b6beda70d7d482e664507")
+                   , customerId : ObjectId("5e0b6beda70d7d482e664508")  })
+
+ // Ao inves de termos 3 tabelas podemos ter apenas duas
+
+ db.orders.drop()
+
+ db.customers.updateOne({},{
+                            $set : { orders : [{productId : ObjectId("5e0b6beda70d7d482e664507"), quantity : 2 } ] }
+                        })
+
+ db.customers.find({}, {_id : 0}).pretty()
