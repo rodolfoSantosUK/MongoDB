@@ -1,0 +1,14 @@
+use carData
+
+ db.persons.insertOne({name: "Max", car: {model: "BMW", price: 40000}})
+ db.persons.find().pretty()
+ db.persons.deleteMany({})
+
+ # Ao invés de usar embedded pode-se usar por referência
+
+ db.persons.insertOne({name: "Max", age:  34, salary : 3400})
+ db.cars.insertOne({model: "BMW", price : 40000, owner : ObjectId("5e0b3149a70d7d482e6644fe")})
+
+ use carData
+ db.persons.drop()
+ db.cars.drop()
