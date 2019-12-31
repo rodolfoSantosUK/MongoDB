@@ -1,0 +1,11 @@
+use questions
+
+db.questionThreads.insertOne({creator : "Max",
+                              question: "How does that work",
+                              answers: [
+                                        {text: "Like that"},
+                                        {text : "Thanks!"}
+                                       ]
+                             })
+
+db.questionThreads.find().pretty();

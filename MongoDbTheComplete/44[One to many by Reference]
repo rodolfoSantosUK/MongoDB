@@ -1,0 +1,13 @@
+use cityData
+db.cities.drop()
+db.citizens.drop()
+
+db.cities.insertOne({name: "New York City", coordinates: {lat: 21, lng: 55}})
+
+db.cities.find().pretty()
+
+db.citizens.insertMany([
+         {name:"Max Schwarzmueller", cityId: ObjectId("5e0b6309a70d7d482e664502")},
+         {name:"Manuel Lorenz", cityId: ObjectId("5e0b6309a70d7d482e664502")}
+         ])
+db.citizens.find({},{_id: 0}).pretty()
