@@ -1,0 +1,27 @@
+ use bookRegistry
+
+ db.books.drop()
+
+ db.books.insertOne({name : "My favorite book",
+                     authors : [
+                                {name : "Max Schwarz", age : 29},
+                                {name : "Monuel Lor", age : 30}
+                               ]
+                    })
+
+ db.books.find().pretty()
+
+ db.authors.insertMany([{name : "Max Schwarz", age : 29, address : {street: "main"}},
+                        {name : "Monuel Lor", age : 30,  address : {street: "tree"}}
+                       ])
+ db.authors.find().pretty()
+
+ db.books.updateOne({}, {$set : {authors : [ObjectId("5e0bc4aba70d7d482e66450a"),
+                                            ObjectId("5e0bc4aba70d7d482e66450b")]}
+                    })
+ db.books.find().pretty()
+
+db.books.aggregate([{
+                     $lookup: {from: "authors", localField: "authors", foreignField:"_id", as: "creators"}
+                    }
+                   ]).pretty()
