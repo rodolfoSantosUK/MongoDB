@@ -21,7 +21,7 @@
                     })
  db.books.find().pretty()
 
-db.books.aggregate([{
+ db.books.aggregate([{
                      $lookup: {from: "authors", localField: "authors", foreignField:"_id", as: "creators"}
                     }
-                   ]).pretty()
+                    ]).pretty()

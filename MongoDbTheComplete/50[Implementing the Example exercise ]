@@ -1,0 +1,26 @@
+ use blog
+ db.user.drop()
+ db.posts.drop()
+
+ db.user.insertMany([{name: "Max Schwarzmueller",
+                      age : 29,
+                      email : "max@test.com"},
+                     {name: "Manuel Lorenz",
+                      age : 30,
+                      email : "manu@test.com"} ])
+
+ db.user.find().pretty()
+
+ db.posts.insertOne({title: "My first post",
+                     text : "This is my first post, I hope you like it !",
+                     tags : ["new", "tech"],
+                     creator : ObjectId("5e0d1c3ca70d7d482e66450c")
+                    })
+
+ db.posts.find().pretty()
+
+ db.posts.aggregate([{
+                      $lookup: {from: "user", localField: "creator", foreignField:"_id", as: "criador"}
+                     }
+                     ]).pretty()
+
